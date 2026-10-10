@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10141e">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%278%27 fill=%27%23171c28%27/%3E%3Cpath d=%27m6 8 10 18L26 8h-6l-4 8-4-8z%27 fill=%27%2374ddbb%27/%3E%3C/svg%3E">
+  <title>Vector · Laboratorio de trading</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <script defer src="/static/app.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#overview" aria-label="Vector, vista general">
+        <span class="brand-mark"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="m5 7 11 20L27 7h-7l-4 8-4-8z" fill="currentColor"/></svg></span>
+        <span>vector<span class="brand-dot">.</span><small>TRADING LAB</small></span>
+      </a>
+      <div class="sidebar-label">WORKSPACE</div>
+      <nav class="navigation" aria-label="Navegación principal">
+        <a href="#overview" class="nav-item active" data-view="overview"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Vista general</a>
+        <a href="#market" class="nav-item" data-view="market"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17l6-6 4 3 8-10M16 4h5v5"/></svg>Mercado<span class="nav-count" id="asset-count">—</span></a>
+        <a href="#lab" class="nav-item" data-view="lab"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6M10 3v7L4 19a1 1 0 0 0 1 2h14a1 1 0 0 0 1-2l-6-9V3M7 16h10"/></svg>Laboratorio</a>
+        <a href="#activity" class="nav-item" data-view="activity"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14v17H5zM9 8h6M9 12h6M9 16h4"/></svg>Actividad</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="local-badge"><span class="small-orb"></span><div>Entorno de práctica<small>Operaciones simuladas</small></div></div>
+        <button class="sidebar-config" data-action="settings"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM9 3h6l1 3 3 1 2 5-2 5-3 1-1 3H9l-1-3-3-1-2-5 2-5 3-1z"/></svg>Configuración</button>
+        <div class="sidebar-foot">VECTOR / PAPER ENGINE <span>v1.0</span></div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="simulation-banner"><span class="banner-icon">◇</span><strong>Simulación — no dinero real</strong><span class="banner-detail">Entradas, salidas y resultados son virtuales.</span><span class="banner-pill">PAPER TRADING</span></div>
+      <header class="topbar">
+        <div class="breadcrumb">Workspace <span>/</span> <strong id="breadcrumb-current">Vista general</strong></div>
+        <div class="topbar-right"><span class="connection" id="connection-status"><i></i>Conectando</span><span class="topbar-divider"></span><span class="avatar">VL</span></div>
+      </header>
+      <div class="content">
+        <section class="page-heading">
+          <div><div class="eyebrow" id="page-eyebrow">TU ESTRATEGIA, EN PERSPECTIVA</div><h1 id="page-title">Vista general<span class="heading-dot">.</span></h1><p id="page-description">Observa el mercado. Prueba ideas. Aprende de cada operación.</p></div>
+          <div class="heading-actions"><button class="button secondary" data-action="cycle" id="cycle-button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7v5h-5M4 17v-5h5M6 7a7 7 0 0 1 12-1l2 3M4 15l2 3a7 7 0 0 0 12-1"/></svg>Analizar ahora</button><button class="button primary" data-action="toggle" id="toggle-button"><svg class="play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7z"/></svg>Iniciar bot</button></div>
+        </section>
+
+        <div class="notice" id="notice" role="status" aria-live="polite" hidden></div>
+        <div class="engine-bar">
+          <div class="engine-state"><span class="engine-orb" id="engine-orb"></span><div><strong id="engine-status">Esperando conexión</strong><small id="engine-update">Preparando el panel</small></div></div>
+          <div class="engine-tag" id="source-label">DATOS —</div><div class="engine-tag violet" id="ai-label">MOTOR —</div>
+          <div class="engine-spacer"></div><button class="text-button" data-action="settings">Ajustar estrategia <svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></button>
+        </div>
+
+        <section class="view" id="view-overview">
+          <div class="metrics-grid" id="metrics"><article class="metric-card"><span class="metric-label">Patrimonio virtual</span><strong class="metric-value">—</strong><span class="metric-caption">Esperando datos del motor</span></article><article class="metric-card"><span class="metric-label">Resultado de hoy</span><strong class="metric-value">—</strong><span class="metric-caption">Operaciones simuladas</span></article><article class="metric-card"><span class="metric-label">Posiciones abiertas</span><strong class="metric-value">—</strong><span class="metric-caption">Exposición actual</span></article><article class="metric-card"><span class="metric-label">Drawdown actual</span><strong class="metric-value">—</strong><span class="metric-caption">Desde el máximo del patrimonio</span></article></div>
+
+          <div class="overview-grid">
+            <article class="panel equity-panel"><div class="panel-header"><div><div class="eyebrow">RENDIMIENTO</div><h2>La curva de tu estrategia</h2></div><span class="chip">Desde el inicio</span></div><div class="chart-summary" id="chart-summary"><strong>—</strong><span>Patrimonio virtual · USD</span></div><div class="equity-chart" id="equity-chart"><div class="chart-empty">El historial aparecerá después del primer análisis.</div></div><div class="chart-footer"><span><i class="legend-dot"></i>Patrimonio</span><span id="chart-period">Sin historial</span></div></article>
+            <article class="panel strategy-panel"><div class="panel-header"><div><div class="eyebrow">ESTRATEGIA</div><h2>El control está en tus manos</h2></div><span class="tiny-icon">⌘</span></div><label class="control-label">Modo de operación</label><div class="segmented" role="group" aria-label="Modo de operación"><button data-mode="operate" class="selected">Operar</button><button data-mode="close_only">Solo cierre</button></div><p class="control-help" id="mode-help">Analiza oportunidades y gestiona posiciones.</p><div class="slider-heading"><label class="control-label" for="aggressiveness">Agresividad</label><span class="level-pill" id="aggression-value">4 / 10</span></div><input id="aggressiveness" type="range" min="1" max="10" value="4"><div class="slider-labels"><span>Conservadora</span><span>Activa</span></div><div class="strategy-divider"></div><div class="strategy-facts" id="strategy-facts"><div><span>Intervalo de análisis</span><strong>—</strong></div><div><span>Límite de pérdida diaria</span><strong>—</strong></div><div><span>Posiciones máximas</span><strong>—</strong></div></div><button class="button full secondary" data-action="settings">Configurar límites <svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></button></article>
+          </div>
+          <article class="panel positions-panel"><div class="panel-header"><div><div class="eyebrow">TU CARTERA</div><h2>Posiciones abiertas <span class="title-count" id="position-count">0</span></h2></div><span class="muted small">Stops y objetivos supervisados por el motor</span></div><div id="positions-content"><div class="empty-state"><span class="empty-symbol">⇄</span><h3>Todo empieza con una oportunidad</h3><p>Las posiciones simuladas aparecerán aquí cuando el motor encuentre una entrada.</p></div></div></article>
+          <article class="panel market-overview"><div class="panel-header"><div><div class="eyebrow">RADAR DE MERCADO</div><h2>Un vistazo a los activos</h2></div><a href="#market" class="text-button">Explorar mercado <svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a></div><div class="asset-mini-grid" id="asset-mini-grid"><p class="muted">Esperando las cotizaciones…</p></div><div class="panel-footnote" id="quotes-note">Las cotizaciones y su procedencia se mostrarán aquí.</div></article>
+        </section>
+
+        <section class="view" id="view-market" hidden>
+          <div class="market-layout"><article class="panel asset-list-panel"><div class="panel-header"><div><div class="eyebrow">UNIVERSO DE INVERSIÓN</div><h2>Radar de activos</h2></div><span class="chip" id="market-asset-count">— activos</span></div><div class="asset-list" id="asset-list"><div class="empty-state"><h3>Esperando cotizaciones</h3><p>El motor de mercado todavía no ha entregado datos.</p></div></div></article><article class="panel asset-detail-panel" id="asset-detail"><div class="empty-state"><span class="empty-symbol">↗</span><h3>Dentro de una decisión</h3><p>Selecciona un activo para ver sus indicadores y el recorrido de su señal.</p></div></article></div>
+        </section>
+
+        <section class="view" id="view-lab" hidden>
+          <div class="lab-intro"><span class="lab-glyph">✳</span><div><h2>Una hipótesis es el comienzo.</h2><p>La evidencia llega con las operaciones. Cada experimento muestra su muestra y sus resultados observados.</p></div></div>
+          <div class="lab-grid"><article class="panel"><div class="panel-header"><div><div class="eyebrow">MEMORIA DE LA ESTRATEGIA</div><h2>Experimentos</h2></div><span class="chip">Aprendizaje observado</span></div><div id="experiments-content"></div></article><article class="panel news-panel"><div class="panel-header"><div><div class="eyebrow">CONTEXTO MANUAL</div><h2>Añade un titular</h2></div><span class="tiny-icon">+</span></div><p class="muted news-explanation">Puedes aportar contexto al motor de IA. Estos titulares los introduces tú: no se verifican ni son un servicio de noticias en directo.</p><form id="news-form"><label for="news-text" class="control-label">Titular o contexto de mercado</label><textarea id="news-text" placeholder="Ej.: El banco central anuncia una nueva decisión de tipos…" minlength="5" maxlength="2000" required rows="4"></textarea><div class="news-form-foot"><span>Contexto sin verificar</span><button class="button secondary" type="submit">Añadir contexto <svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></button></div></form><div class="news-divider"></div><div id="news-content"></div></article></div>
+        </section>
+
+        <section class="view" id="view-activity" hidden>
+          <article class="panel trades-panel"><div class="panel-header"><div><div class="eyebrow">HISTORIAL</div><h2>Operaciones cerradas</h2></div><span class="chip" id="trade-count">0 operaciones</span></div><div id="trades-content"></div></article>
+          <article class="panel event-panel"><div class="panel-header"><div><div class="eyebrow">TRANSPARENCIA</div><h2>Registro del motor</h2></div><span class="chip">Decisiones y eventos</span></div><div id="events-content"></div></article>
+        </section>
+        <footer class="main-footer"><span><span class="brand-dot">●</span> Un laboratorio para aprender antes de operar.</span><span>Sin promesas de rentabilidad · Capital virtual</span></footer>
+      </div>
+    </main>
+  </div>
+
+  <div class="drawer-backdrop" id="drawer-backdrop" hidden></div>
+  <aside class="settings-drawer" id="settings-drawer" role="dialog" aria-modal="true" aria-labelledby="settings-title" hidden>
+    <div class="drawer-header"><div><div class="eyebrow">CONFIGURACIÓN</div><h2 id="settings-title">Tu estrategia</h2></div><button class="icon-button" data-action="close-settings" aria-label="Cerrar configuración">×</button></div>
+    <form id="settings-form"><div class="drawer-body"><div class="notice notice-error" id="drawer-notice" role="status" hidden></div><p class="muted">Los cambios se aplican al motor de simulación.</p><label class="control-label" for="market-source">Fuente de cotizaciones</label><select id="market-source" name="market_source"><option value="demo">DEMO · datos sintéticos</option><option value="kraken">Kraken · cotizaciones reales</option></select><p class="control-help" id="source-help">Para cambiar de fuente, pausa el motor y reinicia cualquier historial de operaciones.</p><div class="form-row"><label for="cycle-seconds">Intervalo de análisis <small>segundos</small><input id="cycle-seconds" name="cycle_seconds" type="number" min="30" max="3600" step="1" value="60" required></label><label for="max-positions">Posiciones máximas <small>simultáneas</small><input id="max-positions" name="max_positions" type="number" min="1" max="8" step="1" value="4" required></label></div><label class="control-label" for="daily-loss">Límite de pérdida diaria (%)</label><input id="daily-loss" name="daily_loss_limit_pct" type="number" min="0.5" max="10" step="0.1" value="3" required><p class="control-help">Limita las nuevas entradas cuando se alcanza este umbral.</p><div class="ai-setting"><div><strong>Interpretación con Claude</strong><p>Opcional. Requiere una clave configurada en el servidor.</p></div><label class="switch"><input id="ai-enabled" name="ai_enabled" type="checkbox"><span></span><span class="sr-only">Activar interpretación con Claude</span></label></div><div class="inline-note" id="ai-help"></div><div class="danger-zone"><h3>Empezar de nuevo</h3><p>Reinicia el capital virtual, las posiciones y el historial de esta simulación.</p><button type="button" class="text-button danger" data-action="reset-dialog">Reiniciar simulación <svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></button></div></div><div class="drawer-footer"><button type="button" class="button secondary" data-action="close-settings">Cancelar</button><button type="submit" class="button primary">Guardar cambios</button></div></form>
+  </aside>
+
+  <dialog class="confirmation-dialog" id="reset-dialog"><form id="reset-form"><div class="modal-icon">↺</div><h2>¿Empezar una nueva simulación?</h2><p>Se eliminarán las posiciones virtuales, las operaciones y el historial de patrimonio. Esta acción reinicia el laboratorio.</p><label class="control-label" for="reset-balance">Capital virtual inicial (USD)</label><input id="reset-balance" type="number" min="100" max="1000000000" step="1" value="10000" required><div class="notice notice-error" id="reset-notice" role="alert" hidden></div><div class="modal-actions"><button type="button" class="button secondary" data-action="cancel-reset">Conservar historial</button><button type="submit" class="button danger-button">Reiniciar</button></div></form></dialog>
+  <dialog class="confirmation-dialog" id="close-dialog"><form id="close-form"><div class="modal-icon">⇄</div><h2 id="close-title">Cerrar posición simulada</h2><p id="close-description">La operación se cerrará al precio disponible en el motor y se descontarán las comisiones simuladas.</p><div class="notice notice-error" id="close-notice" role="alert" hidden></div><div class="modal-actions"><button type="button" class="button secondary" data-action="cancel-close">Conservar posición</button><button type="submit" class="button primary">Cerrar posición</button></div></form></dialog>
+</body>
+</html>
